@@ -1,0 +1,48 @@
+
+<div class="shop-list-container" >
+
+  <h3> Gestion des livraisons </h3>
+  <div>
+
+    <div class="articles">
+
+      <div class="articles-boutons">
+        <button type="button" class="btn btn-primary" (click)="askAdd()" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter un fournisseur</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="askBack()"><i class="fas fa-chevron-left"></i>&nbsp;Retour</button>
+      </div>
+
+      <div *ngFor="let livraison of livraisons" class="ligne-article">
+
+        <div class="ligne-article-contenu">
+          <h4 class="ligne-article-intitule">{{ livraison.dateLivraison | date:'dd-MM-yyyy'}}</h4>
+          <div>
+            <label>N° livraison</label><span> {{ livraison.id }}</span>
+          </div>
+          <div>
+            <label>Statut</label><span> {{ getLabelStatutLivraison(livraison.statutId) }}</span>
+          </div>
+          <div>
+            <label>Adresse</label> <span> {{ getLabelAdresse(livraison.adresseId) }}</span>
+          </div>
+
+        </div>
+
+        <div class="ligne-article-actions">
+
+
+          <ng-container>
+            <button (click)="askEdit(livraison.id)"><i class="fas fa-pencil-alt"></i></button>
+            <button (click)="askDelete(livraison.id)"><i class="fas fa-trash-alt"></i></button>
+          </ng-container>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+

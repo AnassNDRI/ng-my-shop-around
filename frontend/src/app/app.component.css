@@ -1,0 +1,105 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 100;
+}
+
+.panier-count {
+  font-size: 12px;
+  background: #fc835a;
+  color: white;
+  position: absolute;
+  top: -5px;
+  right: -9px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-sm {
+  width: 48px;
+  height: 48px;
+  line-height: 48px ;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-header a {
+  color: #4EB6CF;
+}
+.widget-header{
+  padding-right: 25px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.icontext {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.icontext .text {
+  line-height: 1.2;
+}
+.btn {
+  color: #4EB6CF;
+  padding-left: 30px;
+}
+
+a:hover, .lien-actif {
+  color: #4EB6CF;
+}
+
+
+li{
+  padding-right: 15px;
+}
+
+main {
+  padding: 20px;
+  min-height: 500px;
+}
+
+
+
+
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #333A40;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}

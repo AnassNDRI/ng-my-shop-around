@@ -1,0 +1,64 @@
+
+<div class="container">
+
+  <form (ngSubmit)="register()" [formGroup]="formGroup" >
+
+    <div class="login-body">
+
+      <div>
+      <input type="text" class="form-control" placeholder="Nom" formControlName="nom" id="nom" />
+        <span class="error" *ngIf="formGroup.controls['nom'].touched && formGroup.controls['nom'].invalid">Le nom est obligatoire et doit contenir au moins 2 lettres</span>
+      </div>
+
+      <div>
+      <input type="text" class="form-control" placeholder="Prénom" formControlName="prenom" id="prenom" />
+        <span class="error" *ngIf="formGroup.controls['prenom'].touched && formGroup.controls['prenom'].invalid">Le prénom est obligatoire et doit contenir au moins 2 lettres</span>
+      </div>
+
+
+      <div>
+      <input type="email" class="form-control"  placeholder="Email"formControlName="email" id="email" />
+        <span class="error" *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].invalid">L'adresse email est obligatoire</span>
+     </div>
+
+      <div>
+      <input type="password" class="form-control" placeholder="Mot de passe "formControlName="mdp" id="mdp" />
+        <span class="error" *ngIf="formGroup.controls['mdp'].touched && formGroup.controls['mdp'].invalid">Le mot de passe est obligatoire</span>
+      </div>
+
+      <div>
+      <input type="date" class="form-control" placeholder="Date de naissance " formControlName="dateNaissance" id="dateNaissance" />
+      </div>
+
+      <div>
+      <input type="text" class="form-control" placeholder="Téléphone"formControlName="telephone" id="telephone" />
+      </div>
+
+      <div>
+      <input type="text" class="form-control" placeholder="GSM"formControlName="gsm" id="gsm" />
+      </div>
+
+
+      <div class="save-barre">
+        <button type="submit" class="btn btn-Valider " [disabled]="formGroup.invalid">Enregister</button>
+      </div>
+
+      <div class="save-barre">
+        <button type="button" class="btn btn-Retour" (click)="askOrder()">ANNULER</button>
+      </div>
+
+
+
+        <p class="error" *ngIf="error">{{error}}</p>
+
+    <div>
+      Si vous avez un compte?  <a href="/login">
+      connectez-vous ici  </a>
+    </div>
+
+    </div>
+  </form>
+
+
+
+</div>

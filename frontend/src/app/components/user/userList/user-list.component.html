@@ -1,0 +1,53 @@
+
+<div class="shop-list-container" >
+
+  <h2> ENREGISTREMENT DES UTILISATEURS </h2>
+  <div>
+
+    <div class="articles">
+
+      <div class="articles-boutons">
+        <button type="button" class="btn btn-primary" (click)="askAdd()" ><i class="fas fa-plus-circle"></i>&nbsp;Ajouter</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="askBack()"><i class="fas fa-chevron-left"></i>&nbsp;Retour</button>
+      </div>
+      <div *ngFor="let user of users" class="ligne-article">
+
+        <div class="ligne-article-contenu">
+          <div class="ligne-utilisateur">
+            <label>Nom </label> <span>{{ user.nom }}</span>
+          </div>
+          <div class="ligne-utilisateur">
+            <label>Prenom </label> <span> {{ user.prenom }}</span>
+          </div>
+          <div class="ligne-utilisateur">
+            <label>Email </label> <span> {{ user.email }}</span>
+          </div>
+          <div class="ligne-utilisateur">
+            <label>Telephone </label> <span> {{ user.telephone }}</span>
+          </div>
+          <div class="ligne-utilisateur">
+            <label>GSM </label> <span> {{ user.gsm }}</span>
+          </div>
+          <div>
+            <label>Role utilisateur</label><span class="ligne-article-prix"> {{ getLabelRole(user.roleId) }}</span>
+          </div>
+
+        </div>
+
+        <div class="ligne-article-actions">
+
+          <ng-container>
+            <button (click)="askEdit(user.id)"><i class="fas fa-pencil-alt"></i></button>
+            <button (click)="askDelete(user.id)"><i class="fas fa-trash-alt"></i></button>
+          </ng-container>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

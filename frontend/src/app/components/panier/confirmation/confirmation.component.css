@@ -1,0 +1,28 @@
+.shop-form-container{
+  min-height: 400px;
+}
+
+
+
+.shadowbox {
+  width: 30em;
+  border: 1px solid #333;
+  box-shadow: 8px 8px 5px #444;
+  padding: 8px 12px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+}
+
+
+.btn-vider {
+  background: #357ae8;
+  color: #ffffff;
+  fill: #ffffff;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25);
+  border-radius: 100px;
+  display: block;
+  margin : auto;
+
+}

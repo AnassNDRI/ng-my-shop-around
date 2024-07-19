@@ -1,0 +1,56 @@
+
+
+<div class="shop-form-container">
+
+  <div style="margin-left: 12px;" class="shop-form-titre">
+    <h4>Mes Adresses</h4>
+
+    <div style="display:flex; justify-content: flex-end; " >
+      <button type="button" class="btn btn-outline-secondary" (click)="askBack()"><i class="fas fa-chevron-left"></i>&nbsp;Retour</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="askAddAddress()"><i class="fas fa-circle-plus"></i>&nbsp;Ajouter une adresse</button>
+    </div>
+  </div>
+
+  <div class="adresse-list">
+
+    <app-adresse-form *ngIf="adresseSelected && adresseSelected.id === null"
+                      [adresse]="adresseSelected"
+                      [adresseTypeList]="adresseTypeList"
+                      (back)="refresh()">
+    </app-adresse-form>
+
+    <ng-container *ngFor="let adresse of adresseList">
+
+      <!-- Affichage d'une adresse -->
+      <div *ngIf="adresse !== adresseSelected" class="adresse-row-consult" (click)="adresseSelected = adresse">
+        <span class="type-adresse">{{ getAdresseType( adresse.adresseTypeId )?.libelle }}</span>
+        <span>&nbsp;&nbsp;{{ adresse.rue }}</span>
+        <span>{{ adresse.numero }}</span>
+        <span>{{ adresse.boite }}</span>
+        <span>{{ adresse.ville }}</span>
+        <span>{{ adresse.codePostal }}</span>
+        <span>{{ adresse.pays }}</span>
+        <div class="ligne-article-actions">
+          <button class="btn" (click)="adresseSelected = adresse"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-delete" (click)="askDelete($event, adresse.id)"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+
+      <!-- Edition d'une adresse -->
+      <app-adresse-form *ngIf="adresse === adresseSelected"
+                        [adresse]="adresseSelected"
+                        [adresseTypeList]="adresseTypeList"
+                        (back)="refresh()">
+      </app-adresse-form>
+
+    </ng-container>
+
+  </div>
+
+
+
+
+</div>
+
+
+

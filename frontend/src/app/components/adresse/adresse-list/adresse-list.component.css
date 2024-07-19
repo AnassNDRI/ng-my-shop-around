@@ -1,0 +1,109 @@
+h4{
+  text-transform: uppercase;
+  font-weight: 350;
+  margin-bottom: 5px;
+}
+
+h3{
+  margin-bottom: 30px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #4EB6CF;
+}
+
+.shop-form-titre {
+  padding: 15px 0px;
+  margin: auto;
+  margin-bottom: 10px;
+  max-width: 760px;
+  display:grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
+}
+
+.shop-form-container{
+  max-width: 760px;
+}
+
+
+.shop-form{
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+
+label{
+  text-transform: uppercase;
+  font-size: 0.8em;
+  min-width: 150px;
+  margin-bottom: 10px;
+}
+
+.btn-outline-secondary{
+  width: 35%;
+  margin-left: 5px;
+}
+
+.adresse-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.adresse-row-consult {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  padding: 10px 15px;
+  background:white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.adresse-row-consult:hover {
+  background:#f6f6f6;
+}
+
+.type-adresse {
+  padding: 2px;
+  border-radius: 30px;
+  background: #4eb6cf;
+  color: white;
+  font-size: 0.9em;
+  min-width: 186px;
+  text-align: center;
+}
+
+
+app-adresse-form {
+  padding: 10px 15px;
+  background:white;
+  border-radius: 5px;
+}
+
+button {
+  min-width: 200px;
+  border-radius: 3px;
+}
+
+.ligne-article-actions button {
+  min-width: auto;
+}
+.ligne-article-actions {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.shop-form-titre{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn-delete {
+  color: #d06f60;
+}
+
+

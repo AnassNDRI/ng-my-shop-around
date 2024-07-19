@@ -1,0 +1,32 @@
+<div class="shop-form-titre">
+
+  <h4>Données personnelles</h4>
+
+  <div style="display:flex; justify-content: flex-end">
+    <button type="button" class="btn btn-outline-secondary" (click)="askBack()"><i class="fas fa-chevron-left"></i>&nbsp;Retour</button>
+    <button type="button" class="btn btn-outline-secondary"  (click)="askEdit(user.id)"><i class="fas fa-pencil-alt"></i> Modifier</button>
+  </div>
+
+</div>
+
+
+<div class="shop-form-container" *ngIf="user">
+
+  <div class="articles">
+    <h3>{{ user.prenom }} {{ user.nom }} </h3>
+    <div class="ligne-utilisateur">
+      <label>Numéro de téléphone: </label> <span>{{ user.telephone }}</span>
+    </div>
+    <div class="ligne-utilisateur">
+      <label>Numero de portable: </label> <span>{{ user.gsm }}</span>
+    </div>
+    <div class="ligne-utilisateur">
+      <label>Adresse e-mail: </label> <span>{{ user.email }}</span>
+    </div>
+    <div class="ligne-utilisateur">
+      <label>Date de Naissance: </label> <span>{{ user.dateNaissance | date:'dd-MM-yyyy' }}</span>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,55 @@
+
+
+<div class="shop-form-container">
+
+  <h4 *ngIf="!editionMode">Ajouter un utilisateur</h4>
+  <h4 *ngIf="editionMode">Modifier un utilisateur</h4>
+
+  <form (ngSubmit)="askSave()" [formGroup]="formGroup" class="shop-form">
+
+    <label for="nom">Nom</label>
+    <input type="text" class="form-control" formControlName="nom" id="nom" />
+
+    <label for="prenom">Prenom</label>
+    <input type="text" class="form-control" formControlName="prenom" id="prenom" />
+
+    <label for="email">Email</label>
+    <input type="email" class="form-control" formControlName="email" id="email" />
+
+    <label for="mdp">Mot de passe</label>
+    <input type="password" class="form-control" formControlName="mdp" id="mdp" />
+
+    <label for="dateNaissance">Date de naissance</label>
+    <input type="date" class="form-control" formControlName="dateNaissance" id="dateNaissance" />
+
+    <ng-container *ngIf="isAdmin">
+      <label>Rôle</label>
+      <select class="form-select" formControlName="roleId">
+        <option [ngValue]="role.id" *ngFor="let role of roleList">
+          {{ role.libelle }}
+        </option>
+      </select>
+    </ng-container>
+
+
+    <label for="telephone">Téléphone</label>
+    <input type="text" class="form-control" formControlName="telephone" id="telephone" />
+
+    <label for="gsm">GSM</label>
+    <input type="text" class="form-control" formControlName="gsm" id="gsm" />
+
+    <ng-container *ngIf="isAdmin">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox"  formControlName="actif" checked>
+        <label class="form-check-label" *ngIf="formGroup.controls['actif'].value">Utilisateur actif </label>
+        <label class="form-check-label" *ngIf="!formGroup.controls['actif'].value">Utilisateur inactif</label>
+      </div>
+    </ng-container>
+
+    <div class="save-barre">
+      <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid"><i class="fas fa-floppy-disk"></i>&nbsp;Sauvegarder</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="askBack()"><i class="fas fa-chevron-left"></i>&nbsp;Annuler</button>
+    </div>
+
+  </form>
+</div>
