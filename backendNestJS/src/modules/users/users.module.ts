@@ -5,14 +5,14 @@ import { JwtRefreshTokenStrategy } from '../security/jwt-refresh.strategy';
 import { JwtStrategy } from '../security/strategy.service';
 import { JwtModule } from '@nestjs/jwt';
 import { LoggingInterceptor } from '../utils/logger';
-import { ExperienceService } from '../experience/experience.service';
+
 
 
 
 @Module({
   imports : [JwtModule.register({}) ],
   controllers: [UsersController],
-  providers: [UsersService,  JwtStrategy, JwtRefreshTokenStrategy, ExperienceService,
+  providers: [UsersService,  JwtStrategy, JwtRefreshTokenStrategy,
   
     {
       provide: 'APP_INTERCEPTOR',

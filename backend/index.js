@@ -39,6 +39,16 @@ app.use(express.json());
 //parssage de la requête encodée --> lors de l'appel de l'api content-type: content-type: application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
+app.get('/test-db', async (req, res) => {
+    try {
+        const [rows, fields] = await pool.query('SELECT 1 + 1 AS solution');
+        res.json({ message: 'Connexion réussie', result: rows[0].solution });
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur de connexion à la base de données', error });
+    }
+});
+
 //autorisations pour la communication interdomaine définition du Header http
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

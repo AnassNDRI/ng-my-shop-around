@@ -12,16 +12,16 @@ export class AdminGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 
-    if (!user || !user.roleId) {
+    if (!user || !user.utilisateur_role_id) {
       throw new UnauthorizedException(ErrorMessages.UNAUTHORIZED_USER_OR_ROLE);
     }
     // Récupération du rôle de l'utilisateur à l'aide de Prisma
     const role = await this.prismaService.roles.findUnique({
-      where: { roleId: user.roleId },
+      where: { role_id: user.utilisateur_role_id },
     });
 
     // On vérifie si le rôle est 'Administrator'
-    if (role && role.title === 'Administrator') {
+    if (role && role.role_libelle === 'Administrator') {
       return true;
     } else {
       throw new UnauthorizedException(ErrorMessages.ACCESS_DENIED);

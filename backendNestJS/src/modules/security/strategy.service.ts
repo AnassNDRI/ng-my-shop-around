@@ -7,10 +7,9 @@ import { PrismaService } from "../prisma/prisma.service";
 
 type Payload = {
     sub: number;
-    email: string;
-    roleId?: number;
-    userId?: number;
-    jobListingId?: number;
+    utilisateur_email: string;
+    role_id?: number;
+    utilisateur_id?: number;
     tokenVersion: number;
 };
 
@@ -25,9 +24,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     }
 
     async validate(payload: Payload) {
-        const user = await this.prismaService.users.findUnique({
-            where: { email: payload.email },
-            include: { role: true }
+        const user = await this.prismaService.utilisateurs.findUnique({
+            where: { utilisateur_email: payload.utilisateur_email },
+            include: { roles: true }
         });
 
         if (!user) {
@@ -43,7 +42,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         Reflect.deleteProperty(user, 'password');
 
         // Ajout du roleId au payload retourné pour accès ultérieur dans les requêtes authentifiées
-        return { ...user, roleId: user.roleId };
+        return { ...user, role_id: user.utilisateur_role_id };
     }
 }
 

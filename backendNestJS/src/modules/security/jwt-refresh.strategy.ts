@@ -9,13 +9,13 @@ import { ErrorMessages } from "src/shared/error-management/errors-message";
 
 type Payload = {
     sub: number;
-    email: string;
-    roleId?: number;
-    userId?: number;
-    jobListingId?: number;
+    utilisateur_email: string;
+    role_id?: number;
+    utilisateur_id?: number;
     tokenVersion: number;
 
 };
+
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
@@ -31,9 +31,9 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
     async validate(request: Request, payload: Payload) {
         const token = request.headers.authorization?.split(' ')[1];
 
-        const user = await this.prismaService.users.findUnique({
-            where: { email: payload.email },
-            include: { role: true },
+        const user = await this.prismaService.utilisateurs.findUnique({
+            where: { utilisateur_email: payload.utilisateur_email },
+            include: { roles: true },
         });
 
         if (!user) {
@@ -55,7 +55,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
         Reflect.deleteProperty(user, 'password');
 
         // Ajout du roleId au payload retourné
-        return { ...user, roleId: user.roleId };
+        return { ...user, roleId: user.utilisateur_role_id };
     }
 }
 
