@@ -11,10 +11,10 @@ import {RouterModule} from "@angular/router";
 import {JwtInterceptor} from "./services/jwt.interceptor";
 import {Pipe, PipeTransform} from "@angular/core";
 import {RegisterComponent} from "./components/enregistrer/register.component";
-import { DatePipe} from "@angular/common";
 import { LOCALE_ID } from '@angular/core';
 import { ProduitListComponent } from './components/produits/produitsList/produit-list.component';
 import { ProduitSharedModule } from './components/produits/produit-shared.module';
+import { DatePipe } from '@angular/common';
 
 
 
