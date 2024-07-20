@@ -11,20 +11,20 @@
     <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
           <div class="col">
-            <div class="card h-100 shadow-sm">  <img [src]=prod.url class="card-img-top" alt="...">
+            <div class="card h-100 shadow-sm">  <img [src]=prod.article_url class="card-img-top" alt="...">
               <div class="card-body">
                 <div class="clearfix mb-3">
-                  <label>Code Barre : </label><span class="float-end price-hp">{{prod.codeBarre}} € </span> </div>
+                  <label>Code Barre : </label><span class="float-end price-hp">{{prod.article_code_barre}} € </span> </div>
                 <div class="clearfix mb-3">
-                  <label>Intitulé : </label> <span class="float-end price-hp">{{prod.intitule}} </span> </div>
+                  <label>Intitulé : </label> <span class="float-end price-hp">{{prod.article_intitule}} </span> </div>
                 <div class="clearfix mb-3">
                 <div class="clearfix mb-3">
-                  <label>Description : </label><span class="float-end price-hp">{{prod.description}} € </span> </div>
+                  <label>Description : </label><span class="float-end price-hp">{{prod.article_description}} € </span> </div>
                 <div class="clearfix mb-3">
-                  <label>TVA : </label><span class="float-end price-hp">{{getTVA(prod.tvaId)}} € </span> </div>
+                  <label>TVA : </label><span class="float-end price-hp">{{getTVA(prod.article_tva)}} € </span> </div>
               </div>
                 <div class="clearfix mb-3">
-                  <label>Prix : </label><span class="float-end price-hp">{{prod.prix}} € </span> </div>
+                  <label>Prix : </label><span class="float-end price-hp">{{prod.article_prix}} € </span> </div>
               </div>
             </div>
           </div>

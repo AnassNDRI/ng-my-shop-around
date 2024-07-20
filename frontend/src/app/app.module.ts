@@ -13,6 +13,8 @@ import {Pipe, PipeTransform} from "@angular/core";
 import {RegisterComponent} from "./components/enregistrer/register.component";
 import { DatePipe} from "@angular/common";
 import { LOCALE_ID } from '@angular/core';
+import { ProduitListComponent } from './components/produits/produitsList/produit-list.component';
+import { ProduitSharedModule } from './components/produits/produit-shared.module';
 
 
 
@@ -22,6 +24,7 @@ import { LOCALE_ID } from '@angular/core';
     LoginComponent,
     PageNoteFoundComponent,
     RegisterComponent,
+    
 
   ],
   imports: [
@@ -30,6 +33,7 @@ import { LOCALE_ID } from '@angular/core';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ProduitSharedModule,
     RouterModule.forRoot([
     ])
   ],

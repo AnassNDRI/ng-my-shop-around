@@ -33,7 +33,7 @@ export class PanierService {
     // - s'il existe : on augmente simplement sa quantité
     let dejaDansPanier = false;
     for (let ligne of panier) {
-      if (ligne.article.id === article.id) {
+      if (ligne.article.article_id === article.article_id) {
           ligne.quantite++;
           dejaDansPanier = true;
       }
@@ -57,7 +57,7 @@ export class PanierService {
     let i = 0;
 
     for (let ligne of panier) {
-      if (ligne.article.id === articleId) {
+      if (ligne.article.article_id === articleId) {
         const confirmation = confirm('Souhaitez-vous supprimer cet article de votre panier ?');
         if (confirmation == true)
         panier.splice(i, 1);
@@ -77,7 +77,7 @@ export class PanierService {
 
     for (let ligne of panier) {
 
-      if (ligne.article.id === articleId) {
+      if (ligne.article.article_id === articleId) {
         if (ligne.quantite > 1) {
           ligne.quantite--;
         }

@@ -66,7 +66,7 @@ export class VerifierPanierComponent implements OnInit {
   calculerTotal() {
     this.prixTotal = 0;
     for( let ligne of this.panier ) {
-      this.prixTotal += ligne.article.prix * ligne.quantite;
+      this.prixTotal += ligne.article.article_prix * ligne.quantite;
     }
   }
 

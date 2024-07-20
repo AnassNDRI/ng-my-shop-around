@@ -10,18 +10,19 @@ import {Tva} from '../models/tva';
 })
 export class TvaService {
 
-  url = Base_url.Url_ServBack + '/tvas';
+  url = Base_url.Url_ServBack + '/products';
 
 
   constructor(private http: HttpClient) {
   }
 
   list(): Observable<Tva[]> {
-    return this.http.get<Tva[]>(this.url + '/list');
+    return this.http.get<Tva[]>(this.url + '/tva');
+
   }
 
   save(tva: Tva): Observable<Tva> {
-    if( tva.id ) {
+    if( tva.tva_id ) {
       return this.http.put<Tva>(this.url, tva);
     } else {
       return this.http.post<Tva>(this.url, tva);

@@ -44,7 +44,7 @@ export class PanierComponent implements OnInit, OnDestroy {
   calculerTotal() {
     this.prixTotal = 0;
     for( let ligne of this.panier ) {
-      this.prixTotal += ligne.article.prix * ligne.quantite;
+      this.prixTotal += ligne.article.article_prix * ligne.quantite;
     }
   }
 
@@ -53,7 +53,7 @@ export class PanierComponent implements OnInit, OnDestroy {
   }
 
   removeArticle(article: Article) {
-    this.panierService.remove(article.id);
+    this.panierService.remove(article.article_id);
   }
 
   addArticle(article: Article) {

@@ -8,7 +8,7 @@ export class ProductService {
   
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  All Products @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   async getAllTimeProducts() {
-    // Récupération de toutes les fonctions
+    // Récupération de tous les produits
     const articles = await this.prismaService.articles.findMany({});
     // Ici on vérifie si la liste  est vide
     if (articles.length === 0) {
@@ -16,21 +16,10 @@ export class ProductService {
     }
     // On retourne la liste complète
 
-    return {
-      result: true,
-      data: articles,
-      count: articles.length,
-      error_code: null,
-      error: null,
-    };
+    return articles;
   }
 
-  getAllTimsProducts() {
-    return [
-      { id: 1, name: 'Product A' },
-      { id: 2, name: 'Product B' },
-    ];
-  }
+
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ product Detail   @@@@@@@@@@@@@@@@@@@@@@@@@@@@
   async productDetail(article_id: number) {
@@ -42,12 +31,7 @@ export class ProductService {
         where: { article_id: checkProduct.article_id },
       });
       // On retourne la liste complète des fonctions
-      return {
-        result: true,
-        data: product,
-        error_code: null,
-        error: null,
-      };
+      return product;
     } catch (error) {
       // Relance l'erreur pour qu'elle soit gérée ailleurs
       throw error;
@@ -70,17 +54,37 @@ export class ProductService {
       }
 
       // On retourne la liste complète des fonctions
-      return {
-        result: true,
-        count: products.length, // Ajoutez count ici, au même niveau que 'data'
-        data: products, // Directement le tableau des jobListings
-        error_code: null,
-        error: null,
-      };
+      return products;
     } catch (error) {
       // Relance l'erreur pour qu'elle soit gérée ailleurs
       throw error;
     }
+  }
+
+
+
+   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  All Category @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   async getCategoryList() {
+    // Récupération de toutes les Categories
+    const category = await this.prismaService.categories.findMany({});
+    // Ici on vérifie si la liste  est vide
+    if (category.length === 0) {
+      return { message: 'Aucune Categorie dans la Base de données' };
+    }
+    // On retourne la liste complète
+    return category;
+  }
+
+  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  All Tva @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  async getTvaList() {
+    // Récupération de toutes les TVA
+    const tva = await this.prismaService.tva.findMany({});
+    // Ici on vérifie si la liste  est vide
+    if (tva.length === 0) {
+      return { message: 'Aucune TVA dans la Base de données' };
+    }
+    // On retourne la liste complète
+    return tva ;
   }
 
   /////////////////// Fonction pour vérifier l'existance du Product

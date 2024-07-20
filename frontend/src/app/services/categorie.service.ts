@@ -11,7 +11,7 @@ import {Category} from "../models/category";
 })
 export class CategorieService {
 
-  url = Base_url.Url_ServBack + '/categories';
+  url = Base_url.Url_ServBack + '/products'; // products/category
 
 
   constructor(private http: HttpClient,
@@ -19,12 +19,12 @@ export class CategorieService {
   }
 
   list(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url + '/list');
+    return this.http.get<Category[]>(this.url + '/category');
   }
 
   save(category: Category): Observable<Category> {
 
-    if( category.id ) {
+    if( category.categorie_id ) {
       return this.http.put<Category>(this.url, category);
     } else {
       return this.http.post<Category>(this.url, category);

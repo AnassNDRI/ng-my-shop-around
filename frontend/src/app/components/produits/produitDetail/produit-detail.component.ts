@@ -40,10 +40,10 @@ export class ProduitDetailComponent implements OnInit {
       this.articleService.findById(this.prodId).subscribe( prod => {
         this.prod = prod;
 
-        const tva = this.tvaList.find( tva => tva.id === this.prod.tvaId );
+        const tva = this.tvaList.find( tva => tva.tva_id === this.prod.tva?.tva_id );
         if(tva) {
           this.prod.tva = tva;
-          this.prod.prixTVAC = this.prod.prix * ( 1 + tva.pct );
+          this.prod.prixTVAC = this.prod.article_prix * ( 1 + tva.tva_pct );
         }
 
 
@@ -53,9 +53,9 @@ export class ProduitDetailComponent implements OnInit {
   }
 
   getLabelCategorie(categorieId: number) {
-    const cat = this.categoryList.find( cat => cat.id === categorieId);
+    const cat = this.categoryList.find( cat => cat.categorie_id === categorieId);
     if( cat ) {
-      return cat.libelle;
+      return cat.categorie_libelle;
     }
     return 'Pas de catégorie';
   }
@@ -70,9 +70,9 @@ export class ProduitDetailComponent implements OnInit {
   }
 
   getTVA(TVAId: number) {
-    const tva = this.tvaList.find( tva => tva.id === TVAId);
+    const tva = this.tvaList.find( tva => tva.tva_id === TVAId);
     if( tva ) {
-      return tva.libelle;
+      return tva.tva_libelle;
     }
     return 'Pas de catégorie';
   }

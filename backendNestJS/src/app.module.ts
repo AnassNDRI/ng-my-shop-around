@@ -9,6 +9,7 @@ import { SendGridModule } from '@anchan828/nest-sendgrid';
 
 import { ScheduleModule } from '@nestjs/schedule';
 import { AddressModule } from './modules/address/address.module';
+import { ArticlesModule } from './modules/articles/articles.module';
 
 
 
@@ -21,6 +22,7 @@ import { AddressModule } from './modules/address/address.module';
     }),
     ScheduleModule.forRoot(),
     PrismaModule,
+    ArticlesModule,
     UsersModule,
     MailerModule,
     RoleModule,

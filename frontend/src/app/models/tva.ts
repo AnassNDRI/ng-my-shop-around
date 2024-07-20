@@ -1,6 +1,6 @@
 export interface Tva  {
-  id: number;
-  pct: number;
-  libelle: string;
+  tva_id: number;
+  tva_pct: number;
+  tva_libelle: string;
 
 }

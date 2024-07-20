@@ -12,7 +12,7 @@ import {Article} from "../models/article";
 })
 export class ArticleService {
 
-  url = Base_url.Url_ServBack + '/articles';
+  url = Base_url.Url_ServBack + '/products';
 
 
   constructor(private http: HttpClient,
@@ -24,7 +24,7 @@ export class ArticleService {
   }
 
   save(article: Article): Observable<Article> {
-       if( article.id ) {
+       if( article.article_id ) {
       return this.http.put<Article>(this.url, article);
     } else {
       return this.http.post<Article>(this.url, article);
