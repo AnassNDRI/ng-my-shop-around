@@ -8,6 +8,8 @@ import { RoleModule } from './modules/role/role.module';
 import { SendGridModule } from '@anchan828/nest-sendgrid';
 
 import { ScheduleModule } from '@nestjs/schedule';
+import { AddressModule } from './modules/address/address.module';
+
 
 
 @Module({
@@ -22,6 +24,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     UsersModule,
     MailerModule,
     RoleModule,
+    AddressModule,
    
   ],
 })

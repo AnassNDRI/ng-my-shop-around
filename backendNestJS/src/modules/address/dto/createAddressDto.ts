@@ -7,46 +7,41 @@ import {
   Length,
 } from 'class-validator';
 
-
-export class RegisterCustomerAddressDto {
-
+export class CreateAddressDto {
 
   @IsNotEmpty()
   @IsNumber()
-  @Type(() => Number) 
+  @Type(() => Number)
   readonly utilisateur_id: number;
 
-  @IsNotEmpty()
-  @IsString()
-  @Length(1, 255)
-  readonly adresse_rue: string;
 
   @IsNotEmpty()
   @IsString()
-  @Length(1, 6)
-  readonly adresse_numero: string;
+  @Length(3, 250)
+  readonly adresse_rue: string;
 
   @IsOptional()
   @IsString()
-  @Length(1, 6)
-  readonly adresse_boite?: string;
+  @Length(0, 4)
+  readonly adresse_numero: string;
 
   @IsNotEmpty()
   @IsString()
-  @Length(4, 6)
+  @Length(0, 4)
   readonly adresse_cp: string;
 
   @IsNotEmpty()
   @IsString()
-  @Length(1, 100)
+  @Length(2, 70)
   readonly adresse_ville: string;
 
+  
   @IsNotEmpty()
   @IsString()
-  @Length(1, 255)
+  @Length(2, 70)
   readonly adresse_pays: string;
 
 
-
+ 
 
 }

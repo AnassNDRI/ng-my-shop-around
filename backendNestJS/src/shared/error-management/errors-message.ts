@@ -116,7 +116,7 @@ export const ErrorMessages = {
   JOB_TITLE_ALREADY_EXISTS: 'job-title-already-exists', // Vous avez déjà publié une offre pour ce poste. Veuillez modifier l'offre existante ou créer une nouvelle offre pour un autre poste.
   JOB_LISTING_ALREADY_VALIDATED: 'job-listing-already-validated', // Cette offre d'emploi est déjà traitée et un email a été envoyé au Recruteur.
   INVALID_VALIDATION_NOTE_LENGTH: 'invalid-validation-note-length', // Donner une explication entre 20 et 1000 caractères sur le refus de valider cette publication d'emploi.
-  JOB_LISTING_NOT_FOUND: 'job-listing-not-found', // Offre d'emploi introuvable.
+  JOB_LISTING_NOT_FOUND: 'pro-not-found', // Offre d'emploi introuvable.
   JOB_TITLE_NOT_FOUND: 'job-title-not-found', // La fonction spécifiée introuvable.
   CONTRACT_TYPE_NOT_FOUND: 'contract-type-not-found', // Le type de contrat spécifié introuvable.
   JOB_LISTING_ALREADY_TREATED: 'job-listing-already-treated', // Cette offre d'emploi est déjà traitée et un email a été envoyé au Recruteur.

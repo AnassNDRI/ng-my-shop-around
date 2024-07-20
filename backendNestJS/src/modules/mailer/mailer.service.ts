@@ -135,17 +135,17 @@ export class MailerService {
             } 
           </style>
         </head>
-        <body>
-          <div class="container">
-            <h3>Confirmez votre adresse e-mail</h3>
-            <p>Bonjour ${name},</p>
-            <p>Merci de vous être inscrit sur notre plateforme. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous :</p>
-            <a  href="${confirmationUrl}">Confirmer mon compte</a>
-            <p>Si vous n'avez pas demandé à créer un compte, veuillez ignorer cet e-mail.</p>
-            <p>Cordialement,</p>
-            <p>L'équipe de M&M Consulting</p>
-          </div>
-        </body>
+       <body>
+        <div class="container" style="font-family: Arial, sans-serif; color: #333;">
+          <h3>Confirmez votre adresse e-mail</h3>
+          <p>Bonjour ${name},</p>
+          <p>Merci de vous être inscrit sur notre plateforme. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous :</p>
+          <a href="${confirmationUrl}" style="color: #1a73e8;">Confirmer mon compte</a>
+          <p>Si vous n'avez pas demandé à créer un compte, veuillez ignorer cet e-mail.</p>
+          <p>Cordialement,</p>
+          <p>L'équipe de MyShop Around</p>
+        </div>
+      </body>
       </html>
     `;
     // Envoi de l'e-mail

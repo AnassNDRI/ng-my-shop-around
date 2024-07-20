@@ -22,7 +22,7 @@ import { SigninDto } from './dto/signinDto';
 import { SignupCustomerDto } from './dto/signupCustomerDto';
 
 import { ErrorMessages } from 'src/shared/error-management/errors-message';
-import { RegisterCustomerAddressDto } from './dto/RegisterCustomerAddressDto';
+
 
 @Injectable()
 export class UsersService {
@@ -87,7 +87,7 @@ export class UsersService {
           utilisateur_mdp: hash,
           utilisateur_gsm,
           utilisateur_role_id: roleID,
-          utilisateur_actif: true,
+          utilisateur_actif: false,
           confirmationMailToken,
           confirmationMailTokenExpires: new Date(
             Date.now() + 24 * 60 * 60 * 1000,
@@ -339,70 +339,7 @@ export class UsersService {
     }
   }
 
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Register Customer Address @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  async registerCustomerAddress(
-    registerCustomerAddressDto: RegisterCustomerAddressDto,
-  ) {
-    try {
-      const {
-        utilisateur_id,
-        adresse_rue,
-        adresse_numero,
-        adresse_boite,
-        adresse_cp,
-        adresse_ville,
-        adresse_pays,
-        adresse_type,
-      } = registerCustomerAddressDto;
-
-      // On vérifie si l'utilisateur existe
-      const user = await this.prismaService.utilisateurs.findUnique({
-        where: { utilisateur_id },
-      });
-      if (!user) {
-        throw new NotFoundException('Utilisateur non trouvé');
-      }
-
-      // On vérifie si le type d'adresse est valide
-      const addressType = await this.prismaService.adresse_type.findUnique({
-        where: { adresse_type_id: adresse_type },
-      });
-      if (!addressType) {
-        throw new BadRequestException("Type d'adresse non valide");
-      }
-
-      // Enregistrement de l'adresse dans la base de données
-      await this.prismaService.adresses.create({
-        data: {
-          utilisateur_id: utilisateur_id,
-          adresse_rue: adresse_rue,
-          adresse_numero: adresse_numero,
-          adresse_boite: adresse_boite,
-          adresse_cp: adresse_cp,
-          adresse_ville: adresse_ville,
-          adresse_pays: adresse_pays,
-          adresse_type: adresse_type,
-        },
-      });
-
-      // On retourne une réponse de succès
-      return {
-        result: true,
-        data: {
-          result: true,
-          data: 'address added',
-          error_code: null,
-          error: null,
-        },
-        error_code: null,
-        error: null,
-      };
-    } catch (error) {
-      // Relance l'erreur pour qu'elle soit gérée ailleurs
-      throw error;
-    }
-  }
-
+  
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   READ  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -433,6 +370,7 @@ export class UsersService {
       await this.prismaService.utilisateurs.update({
         where: { utilisateur_id: user.utilisateur_id },
         data: {
+          utilisateur_actif: true,
           verifiedMail: true,
           confirmationMailToken: null, // Le jeton est effacé après confirmation
           confirmationMailTokenExpires: null, // La date d'expiration est également  effacée

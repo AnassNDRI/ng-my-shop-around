@@ -28,7 +28,7 @@ export class UsersController {
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Create User Candidat @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  @Post('register-recruiter')
+  @Post('register-customer')
   signupRecruiter(@Body() signupRecruiterDto: SignupCustomerDto) {
     return this.userService.signupCustomer(signupRecruiterDto);
   }

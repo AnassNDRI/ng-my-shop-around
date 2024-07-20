@@ -49,10 +49,12 @@ model Articles {
   article_id            Int              @id @default(autoincrement())
   article_intitule      String
   article_code_barre    String?
+    article_prix          Decimal?         @db.Decimal(10, 0)
   article_tva           Int
   article_marque        Int
   article_categorie     Int
   article_description   String
+   article_url           String?
   article_poids         String?
   article_longeur       String?
   article_largeur       String?
