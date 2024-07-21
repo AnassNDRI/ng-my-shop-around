@@ -30,7 +30,6 @@ import { PaiementComponent } from './paiement/paiement.component';
     FormsModule,
     AdresseModule,
     LivraisonModule,
-
     ReactiveFormsModule
   ]
 })

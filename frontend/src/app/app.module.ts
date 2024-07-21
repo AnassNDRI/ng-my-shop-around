@@ -1,56 +1,45 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
-import { PageNoteFoundComponent } from './components/page-note-found/page-note-found.component';
-import {RouterModule} from "@angular/router";
-import {JwtInterceptor} from "./services/jwt.interceptor";
-import {Pipe, PipeTransform} from "@angular/core";
-import {RegisterComponent} from "./components/enregistrer/register.component";
+import { RouterModule } from '@angular/router';
+import { ProduitsModule } from './components/produits/produits.module'; // Assurez-vous que le chemin est correct
 import { LOCALE_ID } from '@angular/core';
-import { ProduitListComponent } from './components/produits/produitsList/produit-list.component';
-import { ProduitSharedModule } from './components/produits/produit-shared.module';
-import { DatePipe } from '@angular/common';
-
-
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { RegisterComponent } from './components/enregistrer/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { PanierModule } from './components/panier/panier.module';
+import { HomeComponent } from './components/home/home.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    PageNoteFoundComponent,
     RegisterComponent,
-    
-
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    PanierModule,
     ReactiveFormsModule,
-    ProduitSharedModule,
+    ProduitsModule,
     RouterModule.forRoot([
+      // vos routes
     ])
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: "fr-FR" },
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-    JwtHelperService,
-    DatePipe,
-    Pipe
-
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
- // export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
- // return new TranslateHttpLoader(http);
-// }
