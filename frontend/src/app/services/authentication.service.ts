@@ -6,9 +6,9 @@ import {Base_url} from "../utils/baseUrl";
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 export const  TOKEN_KEY  = 'my-token';
-const BASE_URL = Base_url.Url_ServBack + '/utilisateurs/login';
-const  BASE_URLrg = Base_url.Url_ServBack  + '/utilisateurs/register';
-const  BASE_URLId = Base_url.Url_ServBack  + '/utilisateurs/id';
+const BASE_URL = Base_url.Url_ServBack + '/users/signin';
+const  BASE_URLrg = Base_url.Url_ServBack  + '/users/register-customer';
+const  BASE_URLId = Base_url.Url_ServBack  + '/users/signin';
 
 
 export const httpOptions = {
@@ -79,14 +79,13 @@ export class AuthenticationService {
     }
   }
 
-  login(credentials: {email: string, mdp: string}){
+  login(credentials: {utilisateur_email: string, utilisateur_mdp: string}){
     const body = new URLSearchParams();
-    body.set('email', credentials.email);
-    body.set('mdp', credentials.mdp);
+    body.set('utilisateur_email', credentials.utilisateur_email);
+    body.set('utilisateur_mdp', credentials.utilisateur_mdp);
     return this.http.post(BASE_URL, body, httpOptions).pipe(
       map((data: any) => {
         if(data){
-          console.log('data', data);
           sessionStorage.setItem(TOKEN_KEY,JSON.stringify(data));
           this.isAuthenticated.next(data);
           console.log('login token - oui', this.isAuthenticated);
@@ -98,33 +97,30 @@ export class AuthenticationService {
       }));
   }
 
-  register(credentials: {nom: string, prenom: string, email: string, mdp: string,
-    dateNaissance: Date, roleId: number, telephone: string, gsm: string, actif: boolean}){
+  register(credentials: { utilisateur_nom: string, utilisateur_prenom: string, utilisateur_email: string, utilisateur_mdp: string, utilisateur_date_naissance: string, utilisateur_gsm: string, actif: boolean }) {
     console.log(credentials);
     const body = new URLSearchParams();
-    body.set('nom',credentials.nom);
-    body.set('prenom',credentials.prenom);
-    body.set('email', credentials.email);
-    body.set('mdp', credentials.mdp);
-    body.set('dateNaissance', credentials.dateNaissance as any);
-    body.set('roleId', credentials.roleId as any);
-    body.set('telephone', credentials.telephone);
-    body.set('gsm', credentials.gsm);
-    body.set('actif', credentials.actif as any);
-    return this.http.post(BASE_URLrg, body, httpOptions).pipe(
-      map((data: any) => {
-        if(data){
-          console.log('data', data);
-          sessionStorage.setItem(TOKEN_KEY,JSON.stringify(data));
+    body.set('utilisateur_nom', credentials.utilisateur_nom);
+    body.set('utilisateur_prenom', credentials.utilisateur_prenom);
+    body.set('utilisateur_email', credentials.utilisateur_email);
+    body.set('utilisateur_mdp', credentials.utilisateur_mdp);
+    body.set('utilisateur_date_naissance', credentials.utilisateur_date_naissance);
+    body.set('utilisateur_gsm', credentials.utilisateur_gsm);
 
+    return this.http.post(BASE_URLrg, body.toString(), httpOptions).pipe(
+      map((data: any) => {
+        if (data) {
+          console.log('data', data);
+          sessionStorage.setItem(TOKEN_KEY, JSON.stringify(data));
           this.isAuthenticated.next(true);
-          console.log('register token - no', this.isAuthenticated);
-        }else{
+          console.log('register token - yes', this.isAuthenticated);
+        } else {
           this.isAuthenticated.next(false);
           console.log('register token - no', this.isAuthenticated);
         }
         return data;
-      }));
+      })
+    );
   }
 
 

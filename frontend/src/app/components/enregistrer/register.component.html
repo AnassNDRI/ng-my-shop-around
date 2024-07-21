@@ -1,64 +1,45 @@
-
-<div class="container">
-
-  <form (ngSubmit)="register()" [formGroup]="formGroup" >
-
-    <div class="login-body">
-
-      <div>
-      <input type="text" class="form-control" placeholder="Nom" formControlName="nom" id="nom" />
-        <span class="error" *ngIf="formGroup.controls['nom'].touched && formGroup.controls['nom'].invalid">Le nom est obligatoire et doit contenir au moins 2 lettres</span>
+<main>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-8 col-sm-10">
+        <form (ngSubmit)="register()" [formGroup]="formGroup">
+          <div class="login-body">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nom" formControlName="utilisateur_nom" id="utilisateur_nom" />
+              <span class="error" *ngIf="formGroup.controls['utilisateur_nom'].touched && formGroup.controls['utilisateur_nom'].invalid">Le nom est obligatoire et doit contenir au moins 2 lettres</span>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Prénom" formControlName="utilisateur_prenom" id="utilisateur_prenom" />
+              <span class="error" *ngIf="formGroup.controls['utilisateur_prenom'].touched && formGroup.controls['utilisateur_prenom'].invalid">Le prénom est obligatoire et doit contenir au moins 2 lettres</span>
+            </div>
+            <p class="error errorMessage mt-3" *ngIf="error">{{error}}</p>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Email" formControlName="utilisateur_email" id="utilisateur_email" />
+              <span class="error" *ngIf="formGroup.controls['utilisateur_email'].touched && formGroup.controls['utilisateur_email'].invalid">L'adresse email est obligatoire</span>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" placeholder="Mot de passe" formControlName="utilisateur_mdp" id="utilisateur_mdp" />
+              <span class="error" *ngIf="formGroup.controls['utilisateur_mdp'].touched && formGroup.controls['utilisateur_mdp'].invalid">Le mot de passe est obligatoire</span>
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control" placeholder="Date de naissance" formControlName="utilisateur_date_naissance" id="utilisateur_date_naissance" />
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Téléphone" formControlName="utilisateur_gsm" id="utilisateur_gsm" />
+            </div>
+            <div class="save-barre">
+              <button type="submit" class="btn btn-Valider" [disabled]="formGroup.invalid">Enregistrer</button>
+            </div>
+            <div class="save-barre mt-2">
+              <button type="button" class="btn btn-Retour" (click)="askOrder()">Annuler</button>
+            </div>
+            
+            <div class="mt-3">
+              Si vous avez un compte? <a href="/login">Connectez-vous ici</a>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div>
-      <input type="text" class="form-control" placeholder="Prénom" formControlName="prenom" id="prenom" />
-        <span class="error" *ngIf="formGroup.controls['prenom'].touched && formGroup.controls['prenom'].invalid">Le prénom est obligatoire et doit contenir au moins 2 lettres</span>
-      </div>
-
-
-      <div>
-      <input type="email" class="form-control"  placeholder="Email"formControlName="email" id="email" />
-        <span class="error" *ngIf="formGroup.controls['email'].touched && formGroup.controls['email'].invalid">L'adresse email est obligatoire</span>
-     </div>
-
-      <div>
-      <input type="password" class="form-control" placeholder="Mot de passe "formControlName="mdp" id="mdp" />
-        <span class="error" *ngIf="formGroup.controls['mdp'].touched && formGroup.controls['mdp'].invalid">Le mot de passe est obligatoire</span>
-      </div>
-
-      <div>
-      <input type="date" class="form-control" placeholder="Date de naissance " formControlName="dateNaissance" id="dateNaissance" />
-      </div>
-
-      <div>
-      <input type="text" class="form-control" placeholder="Téléphone"formControlName="telephone" id="telephone" />
-      </div>
-
-      <div>
-      <input type="text" class="form-control" placeholder="GSM"formControlName="gsm" id="gsm" />
-      </div>
-
-
-      <div class="save-barre">
-        <button type="submit" class="btn btn-Valider " [disabled]="formGroup.invalid">Enregister</button>
-      </div>
-
-      <div class="save-barre">
-        <button type="button" class="btn btn-Retour" (click)="askOrder()">ANNULER</button>
-      </div>
-
-
-
-        <p class="error" *ngIf="error">{{error}}</p>
-
-    <div>
-      Si vous avez un compte?  <a href="/login">
-      connectez-vous ici  </a>
     </div>
-
-    </div>
-  </form>
-
-
-
-</div>
+  </div>
+</main>

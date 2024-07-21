@@ -24,10 +24,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
+
+
+
   ngOnInit(): void {
     this.credentials = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      mdp: ['', [Validators.required, Validators.minLength(6)]],
+      utilisateur_email: ['', [Validators.required, Validators.email]],
+      utilisateur_mdp: ['', [Validators.required, Validators.minLength(6)]],
     });
     this.layoutService.headerVisible.next(false);
 
@@ -43,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         {
           next: (res) => {
             if(res){
-              console.log('Login ok', res);
               this.authService.isAuthenticated.next(true);
               this.router.navigate(['/home']);
             }else {
@@ -53,18 +55,23 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
           },
           error: (error) => {
-            this.error =  `La combinaison du mot de passe et de l'adresse mail est incorrecte. \n
-                            Veuillez recommencer SVP`;
-          }
+            if (error.error && error.error.error && error.error.error.message) {
+              this.error = error.error.error.message;
+            } else if (error.message) {
+              this.error = error.message;
+            } else {
+              this.error = 'Une erreur est survenue. Veuillez réessayer.';
+            }
+          },
         });
     }
   }
 
-  get email(){
-    return this.credentials.get('email');
+  get utilisateur_email(){
+    return this.credentials.get('utilisateur_email');
   }
-  get mdp(){
-    return this.credentials.get('mdp');
+  get utilisateur_mdp(){
+    return this.credentials.get('utilisateur_mdp');
   }
 
   askBack() {

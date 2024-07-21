@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { PanierModule } from './components/panier/panier.module';
 import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CommonModule } from '@angular/common';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

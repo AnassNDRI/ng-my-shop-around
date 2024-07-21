@@ -4,6 +4,7 @@ import { RegisterComponent } from "./components/enregistrer/register.component";
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNoteFoundComponent } from "./components/page-note-found/page-note-found.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent }, 
+  { path: 'nav', component: NavbarComponent }, 
   { path: 'panier', loadChildren: () => import('./components/panier/panier.module').then(m => m.PanierModule) },
   { path: 'articles', loadChildren: () => import('./components/produits/produits.module').then(m => m.ProduitsModule) },
   { path: 'login', component: LoginComponent },
