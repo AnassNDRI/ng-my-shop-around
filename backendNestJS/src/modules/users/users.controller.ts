@@ -118,7 +118,7 @@ export class UsersController {
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ User Profile Details @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   // Typage du paramètre de requête pour assurer la conformité avec l'interface User
   @UseGuards(AuthGuard('jwt'))
-  @Get('me')
+  @Get('profile')
   async getProfile(@GetUserId() userId: number) {
     return this.userService.getUserProfile(userId);
   }

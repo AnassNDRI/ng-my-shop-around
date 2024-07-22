@@ -391,7 +391,7 @@ export class UsersService {
   }
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ User Profil Details @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  async getUserProfile(utilisateur_id: number) {
+ /* async getUserProfile(utilisateur_id: number) {
     try {
       // On vérifie si l'utilisateur existe
       await this.verifyUsersExistence(utilisateur_id);
@@ -400,17 +400,29 @@ export class UsersService {
       const user = await this.prismaService.utilisateurs.findUnique({
         where: { utilisateur_id: utilisateur_id },
       });
-      return {
-        result: true,
-        data: user,
-        error_code: null,
-        error: null,
-      };
+      return user;
     } catch (error) {
       // Relance l'erreur pour qu'elle soit gérée ailleurs
       throw error;
     }
-  }
+  } */
+
+    async getUserProfile(utilisateur_id: number) {
+      try {
+        const user = await this.prismaService.utilisateurs.findUnique({
+          where: { utilisateur_id },
+        });
+  
+        if (!user) {
+          throw new NotFoundException('User not found');
+        }
+  
+        const { utilisateur_mdp, ...safeUser } = user;
+        return safeUser;
+      } catch (error) {
+        throw error;
+      }
+    }
 
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$   Fonctions Privée  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
