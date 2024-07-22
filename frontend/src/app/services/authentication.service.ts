@@ -8,7 +8,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 export const  TOKEN_KEY  = 'my-token';
 const BASE_URL = Base_url.Url_ServBack + '/users/signin';
 const  BASE_URLrg = Base_url.Url_ServBack  + '/users/register-customer';
-const  BASE_URLId = Base_url.Url_ServBack  + '/users/signin';
+const  BASE_URLId = Base_url.Url_ServBack  + '/users/profile';
 
 
 export const httpOptions = {
@@ -24,6 +24,7 @@ export class AuthenticationService {
 
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentIsAuth = this.isAuthenticated.asObservable();
+  currentUserId: number | null | undefined;
 
 
 
@@ -53,7 +54,7 @@ export class AuthenticationService {
     const token = this.token;
     if (token) {
       const decodedToken = this.jwtService.decodeToken(token);
-      return decodedToken.id;
+      return decodedToken.user.utilisateur_id;
     }
     return null;
   }

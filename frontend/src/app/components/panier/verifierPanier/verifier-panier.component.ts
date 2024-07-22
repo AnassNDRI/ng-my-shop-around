@@ -34,6 +34,7 @@ export class VerifierPanierComponent implements OnInit {
               private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+   this.panierService.clear();
     console.log('isAuth before : ' , this.isAuth);
     this.myToken = sessionStorage.getItem('my-token');
     if(this.myToken){
@@ -71,13 +72,8 @@ export class VerifierPanierComponent implements OnInit {
   }
 
 
-  onCheckout() {
-    this.route.navigate(['/panier/paiementPanier']);
-  }
-
-  askSave() {
-   // alert('Module ne faisant pas partie des modules à développer');
-    this.onCheckout();
+  paySimulation() {
+    this.route.navigate(['/panier/confirmerPanier']);
   }
 
 

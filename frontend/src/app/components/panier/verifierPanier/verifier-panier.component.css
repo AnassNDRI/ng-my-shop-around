@@ -25,8 +25,12 @@ html, body, .wrapper {
 .btn-pay {
   background-color: rgb(154, 195, 154);
   border-radius: 25px;
-  margin-top: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px; /* Ajoute une marge en bas */
+  padding: 5px 10px; /* Diminue la taille du bouton */
+  display: inline-block; /* Assure que les marges sont respectées */
 }
+
 
 .shipping {
   font-weight: 600;
