@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LignePanier } from 'src/app/models/ligne-panier';
@@ -12,6 +12,9 @@ import { PanierService } from 'src/app/services/panier.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
+  @ViewChild('menuToggle') menuToggle!: ElementRef<HTMLInputElement>;
+
   isAuth: null | boolean = false;
   title = 'shopAround';
   myToken: any;
@@ -75,4 +78,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  // Ferme le menu hamburger
+closeMenu(): void {
+  if (this.menuToggle && this.menuToggle.nativeElement) {
+    this.menuToggle.nativeElement.checked = false;
+  }
+}
+
 }

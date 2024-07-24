@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="navbar-container container">
-    <input type="checkbox" id="menu-checkbox" />
+    <input type="checkbox" id="menu-checkbox" #menuToggle  />
     <div class="hamburger-lines">
       <span class="line line1"></span>
       <span class="line line2"></span>
@@ -8,7 +8,7 @@
     </div>
     <ul class="menu-items">
       <li>
-        <a style="position: relative" [routerLink]="['/panier']">
+        <a (click)="closeMenu()" style="position: relative" [routerLink]="['/panier']">
           <i class="fa-solid fa-cart-shopping"></i>
           <div class="panier-count" *ngIf="nbArticlesPanier > 0 && !validate">
             {{ nbArticlesPanier }}
@@ -16,7 +16,7 @@
         </a>
       </li>
       <li class="nav">
-        <a
+        <a (click)="closeMenu()"
           class="nav-link px-2 link-dark"
           [routerLink]="['/home']"
           [routerLinkActive]="'lien-actif'"
@@ -24,19 +24,19 @@
         >
       </li>
       <li class="nav">
-        <a [routerLink]="['/login']" *ngIf="!isAuth">Connexion</a>
+        <a (click)="closeMenu()" [routerLink]="['/login']" *ngIf="!isAuth">Connexion</a>
       </li>
-      <li class="nav">
-        <a [routerLink]="['/register']" *ngIf="!isAuth">S'inscrire</a>
+      <li  class="nav">
+        <a (click)="closeMenu()" [routerLink]="['/register']" *ngIf="!isAuth">S'inscrire</a>
       </li>
 
       <li class="nav">
-        <a [routerLink]="['/profile']" *ngIf="isAuth"
+        <a (click)="closeMenu()" [routerLink]="['/profile']" *ngIf="isAuth"
           ><i class="fa-solid fa-user"></i
         ></a>
       </li>
       <li class="nav">
-        <button type="button" class="btn" (click)="logout()" *ngIf="isAuth">
+        <button type="button" class="btn" (click)="logout()" *ngIf="isAuth" (click)="closeMenu()">
           Déconnexion
         </button>
       </li>
