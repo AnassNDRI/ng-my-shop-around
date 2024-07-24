@@ -17,6 +17,11 @@ export class PanierService {
   public panier$: Observable<LignePanier[]> = this.panierSubject$.asObservable();
 
 
+  private validateSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public validate$: Observable<boolean> = this.validateSubject$.asObservable();
+
+
+
   items:  Produit[] = [];
 
   constructor(private route: Router) {
@@ -125,7 +130,9 @@ export class PanierService {
     return this.items;
   }
 
-  getItems() {
-
+  setValidate(validate: boolean) {
+    this.validateSubject$.next(validate);
   }
+
+  
 }

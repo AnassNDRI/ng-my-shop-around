@@ -7,7 +7,7 @@ import {LivraisonModule} from "../livraison/livraison.module";
 import {VerifierPanierComponent} from "./verifierPanier/verifier-panier.component";
 import {ConfirmationComponent} from "./confirmation/confirmation.component";
 import {AdresseModule} from "../adresse/adresse.module";
-import { PaiementComponent } from './paiement/paiement.component';
+
 
 
 
@@ -17,7 +17,7 @@ import { PaiementComponent } from './paiement/paiement.component';
     PanierComponent,
     VerifierPanierComponent,
     ConfirmationComponent,
-    PaiementComponent
+
 
 
   ],

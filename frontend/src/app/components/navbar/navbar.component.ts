@@ -15,8 +15,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isAuth: null | boolean = false;
   title = 'shopAround';
   myToken: any;
-
+  validate = false;
   nbArticlesPanier = 0;
+
+  
   panierSubscription!: Subscription;
   isAdmin = false;
   isEmploye = false;
@@ -50,6 +52,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isAuth = auth;
       this.isAdmin = this.authService.isAdmin;
       this.isEmploye = this.authService.isEmploye;
+    });
+
+
+    this.panierService.validate$.subscribe(validate => {
+      this.validate = validate;
     });
 
  

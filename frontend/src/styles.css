@@ -1,8 +1,8 @@
 /* Global styles */
 :root {
-  --font1: 'Heebo', sans-serif;
-  --font2: 'Fira Sans Extra Condensed', sans-serif;
-  --font3: 'Roboto', sans-serif;
+  --font1: "Heebo", sans-serif;
+  --font2: "Fira Sans Extra Condensed", sans-serif;
+  --font3: "Roboto", sans-serif;
 }
 
 body {
@@ -28,7 +28,8 @@ h2 {
 }
 
 /* Shop styles */
-.shop-form-container, .shop-list-container {
+.shop-form-container,
+.shop-list-container {
   margin: auto;
   max-width: 900px;
 }
@@ -39,11 +40,7 @@ h2 {
   padding: 20px;
 }
 
-.shop-form-container h4, .shop-list-container h3 {
-  text-transform: uppercase;
-  font-weight: 300;
-  color: #4EB6CF;
-}
+
 
 .shop-form-container h4 {
   margin-bottom: 20px;
@@ -59,9 +56,9 @@ h2 {
   grid-gap: 10px;
 }
 
-.shop-form > label, .shop-form label {
+.shop-form > label,
+.shop-form label {
   display: block;
-  text-transform: uppercase;
   font-weight: 400;
   font-size: 0.9em;
   opacity: 0.8;
@@ -90,7 +87,6 @@ h2 {
 }
 
 /* Button styles */
-
 
 button {
   border: 4px double #cccccc;
@@ -131,8 +127,14 @@ button:hover span:after {
   padding: 0 20px;
   font-size: 1rem;
   text-shadow: 1px 1px 1px #000;
-  background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
-  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+  background-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 30%,
+    rgba(0, 0, 0, 0)
+  );
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   right: 0;
 }
 
@@ -141,7 +143,8 @@ button:hover span:after {
 }
 
 .styled:active {
-  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* Navbar styles */
@@ -165,7 +168,7 @@ button:hover span:after {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 
@@ -176,13 +179,16 @@ button:hover span:after {
 /* Card styles */
 .card {
   background: #fff;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
   border: 0;
   border-radius: 1rem;
 }
 
-.card-img, .card-img-top {
+.card-img,
+.card-img-top {
   border-top-left-radius: calc(1rem - 1px);
   border-top-right-radius: calc(1rem - 1px);
 }
@@ -207,7 +213,7 @@ button:hover span:after {
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Label styles */
@@ -218,10 +224,9 @@ button:hover span:after {
   top: 8px;
   right: 8px;
   padding: 5px 10px;
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-weight: 600;
   border-radius: 3px;
-  text-transform: uppercase;
 }
 
 /* Top-right label */
@@ -254,13 +259,12 @@ button:hover span:after {
 .over-bg {
   background: rgba(53, 53, 53, 0.85);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(0.0px);
-  -webkit-backdrop-filter: blur(0.0px);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   border-radius: 10px;
 }
 
 /* Button styles */
-
 
 .box .btn {
   font-size: 1.5rem;
@@ -277,8 +281,6 @@ button:hover span:after {
     padding: 5px 30px;
   }
 }
-
-
 
 /* Footer styles */
 footer {
@@ -304,18 +306,18 @@ footer {
 }
 
 #menu-accordeon li {
-  background-color: #729EBF;
-  background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+  background-color: #729ebf;
+  background-image: linear-gradient(to bottom, #729ebf 0%, #333a40 100%);
   border-radius: 6px;
   margin-bottom: 2px;
   box-shadow: 3px 3px 3px #999;
-  border: solid 1px #333A40;
+  border: solid 1px #333a40;
 }
 
 #menu-accordeon li li {
   max-height: 0;
   overflow: hidden;
-  transition: all .5s;
+  transition: all 0.5s;
   background: #444;
   border-radius: 0;
   box-shadow: none;
@@ -332,12 +334,13 @@ footer {
   font-size: 1.2em;
 }
 
-#menu-accordeon ul li a, #menu-accordeon li:hover li a {
+#menu-accordeon ul li a,
+#menu-accordeon li:hover li a {
   font-size: 1em;
 }
 
 #menu-accordeon li:hover {
-  background: #729EBF;
+  background: #729ebf;
 }
 
 #menu-accordeon li li:hover {
@@ -361,12 +364,13 @@ footer {
 }
 
 .amz-hp {
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: darkgray;
 }
 
-.fa-question-circle:before, .fa-plus:before {
+.fa-question-circle:before,
+.fa-plus:before {
   color: darkgray;
 }
 
@@ -374,15 +378,19 @@ footer {
   border-radius: 1rem;
   background: #fff;
   box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
-  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
 }
 
-.box-img, .thumb-sec {
+.box-img,
+.thumb-sec {
   max-width: 300px;
 }
 
 @media (max-width: 576px) {
-  .box-img, .thumb-sec {
+  .box-img,
+  .thumb-sec {
     max-width: 200px;
   }
 }
@@ -406,7 +414,7 @@ footer {
 }
 
 .disclaimer {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: darkgray;
 }
 
@@ -414,32 +422,37 @@ footer {
   font-weight: 900;
 }
 
-
-body, html {
+/* Assurez-vous que le body et le html utilisent flexbox et ont une hauteur de 100% */
+html,
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-app-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000; /* Ensure it stays above other elements */
+/* Nouveau conteneur pour englober toute la page */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Assure que le conteneur prend toute la hauteur de la vue */
 }
 
+/* Main utilise flex-grow pour remplir l'espace disponible */
 main {
-  flex: 1;
-  margin-top: 64px; /* This should match the height of your navbar */
+  flex: 1; /* Permet à main de prendre tout l'espace restant */
+  margin-top: 64px; /* Ajustez cette valeur pour qu'elle corresponde à la hauteur de votre navbar */
   display: flex;
   flex-direction: column;
-  padding: 1rem; /* Optional, to add some padding to your main content */
+  padding: 1rem; /* Optionnel, pour ajouter du padding à votre contenu principal */
 }
 
+/* Assurez-vous que le footer est fixé en bas et occupe toute la largeur */
 app-footer {
-  position: relative;
-  bottom: 0;
+  background-color: #a0a2a4;
+  padding: 1rem;
+  text-align: center;
   width: 100%;
+  flex-shrink: 0; /* Empêche le footer de rétrécir */
 }
