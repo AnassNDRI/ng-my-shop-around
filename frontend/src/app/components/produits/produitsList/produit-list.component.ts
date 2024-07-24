@@ -4,8 +4,9 @@ import { Category } from "../../../models/category";
 import { ArticleService } from "../../../services/article.service";
 import { PanierService } from "../../../services/panier.service";
 import { CategorieService } from "../../../services/categorie.service";
-import { Router } from "@angular/router";
+
 import { TvaService } from "../../../services/tva.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produit-list',

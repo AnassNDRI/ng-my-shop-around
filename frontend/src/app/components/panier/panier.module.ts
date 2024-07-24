@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { PanierComponent } from './panier/panier.component';
 import {PanierRoutingModule} from './panier-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import {LivraisonModule} from "../livraison/livraison.module";
 import {VerifierPanierComponent} from "./verifierPanier/verifier-panier.component";
 import {ConfirmationComponent} from "./confirmation/confirmation.component";
 import {AdresseModule} from "../adresse/adresse.module";
-import { PaiementComponent } from './paiement/paiement.component';
+
 
 
 
@@ -18,7 +17,7 @@ import { PaiementComponent } from './paiement/paiement.component';
     PanierComponent,
     VerifierPanierComponent,
     ConfirmationComponent,
-    PaiementComponent
+
 
 
   ],
@@ -30,7 +29,6 @@ import { PaiementComponent } from './paiement/paiement.component';
     FormsModule,
     AdresseModule,
     LivraisonModule,
-
     ReactiveFormsModule
   ]
 })

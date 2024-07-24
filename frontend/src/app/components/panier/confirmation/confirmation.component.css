@@ -1,17 +1,20 @@
-.shop-form-container{
+.shop-form-container {
   min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-
-
 .shadowbox {
-  width: 30em;
+  width: 100%;
+  max-width: 600px;
   border: 1px solid #333;
   box-shadow: 8px 8px 5px #444;
   padding: 8px 12px;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  margin: 20px 0;
 }
-
 
 .btn-vider {
   background: #357ae8;
@@ -23,6 +26,17 @@
   box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25);
   border-radius: 100px;
   display: block;
-  margin : auto;
+  margin: 20px auto;
+  padding: 10px 20px;
+}
 
+@media (max-width: 768px) {
+  .shadowbox {
+    width: 90%;
+  }
+
+  .btn-vider {
+    width: 100%;
+    margin: 10px 0;
+  }
 }

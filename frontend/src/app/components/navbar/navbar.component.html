@@ -1,0 +1,60 @@
+<nav class="navbar">
+  <div class="navbar-container container">
+    <input type="checkbox" id="menu-checkbox" />
+    <div class="hamburger-lines">
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </div>
+    <ul class="menu-items">
+      <li>
+        <a style="position: relative" [routerLink]="['/panier']">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <div class="panier-count" *ngIf="nbArticlesPanier > 0 && !validate">
+            {{ nbArticlesPanier }}
+          </div>
+        </a>
+      </li>
+      <li class="nav">
+        <a
+          class="nav-link px-2 link-dark"
+          [routerLink]="['/home']"
+          [routerLinkActive]="'lien-actif'"
+          >Home</a
+        >
+      </li>
+      <li class="nav">
+        <a [routerLink]="['/login']" *ngIf="!isAuth">Connexion</a>
+      </li>
+      <li class="nav">
+        <a [routerLink]="['/register']" *ngIf="!isAuth">S'inscrire</a>
+      </li>
+
+      <li class="nav">
+        <a [routerLink]="['/profile']" *ngIf="isAuth"
+          ><i class="fa-solid fa-user"></i
+        ></a>
+      </li>
+      <li class="nav">
+        <button type="button" class="btn" (click)="logout()" *ngIf="isAuth">
+          Déconnexion
+        </button>
+      </li>
+
+      <li class="nav">
+        <a
+          class="nav-link px-2 link-dark"
+          *ngIf="isAdmin || isEmploye"
+          [routerLink]="['/admin']"
+          [routerLinkActive]="'lien-actif'"
+          >Admin</a
+        >
+      </li>
+    </ul>
+    <h1 >
+      <a class="active" href="#home"
+        ><i class="fas fa-crow" style="color: #396a5b"> My Shop</i></a
+      >
+    </h1>
+  </div>
+</nav>

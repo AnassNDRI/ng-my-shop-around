@@ -1,66 +1,52 @@
-
-<div class="container">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4"> Confirmation de votre commande</h1>
-    </div>
-  </div>
-
-
-<div class="shop-form-container">
-  <div class="shadowbox">
-    <div class="card mb-4" >
-      <div class="card-header py-3" style="color: darkgreen ; text-align: center" >
-        <h5 class="mb-0">Récaputilatif de votre Commande</h5>
-        <p> <b style="color: #212529 "> Hello ! {{currentUser.nom}} {{currentUser.prenom}}</b></p>
-        <p id="sytyle">
-          <strong style="color: #212529">Votre commande N°</strong>
-          <strong style="color: #212529">  {{numCommande}}</strong>
-          <strong style="color: #212529"> a été traitée avec succès</strong>
-          <br> <br>
-          Elle vous sera livrée  dans les 3 jours ouvrables.
-         <p>Notre ShopAround vous remerci de votre visite </p>
+<main>
+  <div class="container shop-form-container">
+    <div class="shadowbox">
+      <div class="card mb-4">
+        <div class="card-header py-3 text-center" style="color: darkgreen;">
+          <h5 class="mb-0">Récaputilatif  votre Commande</h5>
+          <p><b style="color: #212529">Merci pour votre achat !</b></p>
+          <p>
+            <strong style="color: #212529">Votre commande N°</strong>
+            <strong style="color: #212529">{{numCommande}}</strong>
+            <strong style="color: #212529"> a été traitée avec succès</strong>
+            <br><br>
+            Elle vous sera livrée le <strong>{{shippingDate | date: 'dd/MM/YYYY' }}</strong> entre <strong>09:00-18:00</strong>.
+          </p>
+          <p>Notre ShopAround vous remercie de votre visite</p>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Articles</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of panier; let index=index">
+                <th scope="row"></th>
+                <td>{{prod.article.article_intitule}}</td>
+                <td>{{prod.quantite}}</td>
+                <td>{{ prod.article.article_prix  }} €</td>
+              </tr>
+            
+              <tr>
+                <td colspan="3" id="totalCellLeft"><strong>Total :</strong></td>
+                <td id="totalDroite"><strong>{{ prixTotal }}</strong>€</td>
+              </tr>
+             
+              <tr>
+                <td colspan="3" id="dateTraitement">Date de traitement : {{ curDate | date: 'dd/MM/YYYY' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="card-body"  >
-
-        <table classe="table table-hover" >
-
-          <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Articles</th>
-            <th scope="col">Quantité</th>
-            <th scope="col">Prix</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let prod of panier; let index=index">
-            <th scope="row"></th>
-            <td>{{prod.article.article_intitule}}</td>
-            <td>{{prod.quantite}}</td>
-            <td>{{ prod.article.article_prix  }} €</td>
-          </tr>
-
-          <tr><td colspan="3" style="padding: 0 20px"><hr></td></tr>
-          <tr>
-            <td colspan="3" id="totalCellLeft"><strong>Total :</strong></td>
-            <td id="totalDroite">
-              <strong>{{ prixTotal }}</strong> € </td>
-
-          </tr>
-          <tr><td colspan="3" style="padding: 0 20px"><hr></td></tr>
-          <tr>
-            <td colspan="3" id="dateTraitement"><strong>Date de traitement :{{curDate | date:'YYYY/MM/DD'}}</strong>
-            </td>
-          </tr>
-        </table>
+      <div class="text-center">
+        <button type="button" class="btn btn-vider" (click)="clearCart()" *ngIf="prixTotal > 0">FERMER</button>
       </div>
     </div>
-    <div class="center-div">
-      <button type="button" class="btn  btn-vider" (click)="clearCart()" *ngIf="prixTotal > 0">FERMER </button>
-    </div>
   </div>
-</div>
-
-</div>
-
+</main>

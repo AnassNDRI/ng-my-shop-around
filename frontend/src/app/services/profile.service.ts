@@ -10,7 +10,7 @@ import {Utilisateur} from '../models/utilisateur';
 })
 export class ProfileService {
 
-  url = Base_url.Url_ServBack + '/utilisateurs';
+  url = Base_url.Url_ServBack + '/users';
 
 
   constructor(private http: HttpClient,
@@ -27,7 +27,7 @@ export class ProfileService {
   }
 
   getAccount(): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(this.url + '/account');
+    return this.http.get<Utilisateur>(this.url + '/profile');
   }
 
   delete(id: number): Observable<void> {

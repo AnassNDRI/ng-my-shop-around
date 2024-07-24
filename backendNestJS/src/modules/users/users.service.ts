@@ -23,7 +23,6 @@ import { SignupCustomerDto } from './dto/signupCustomerDto';
 
 import { ErrorMessages } from 'src/shared/error-management/errors-message';
 
-
 @Injectable()
 export class UsersService {
   constructor(
@@ -57,7 +56,9 @@ export class UsersService {
 
       // On verifie l'âge de l'utilisateur
       if (!this.isAgeValid(utilisateur_date_naissance)) {
-        throw new BadRequestException(ErrorMessages.USER_UNDERAGE);
+        throw new BadRequestException(
+          `L'utilisateur doit avoir au moins 18 ans`,
+        );
       }
       // On verifie si le mot de passe fourni est valide.
       await this.isValidPassword(utilisateur_mdp);
@@ -131,11 +132,16 @@ export class UsersService {
 
       // On vérifie si le compte de l'utilisateur est actif
       if (!user.utilisateur_actif)
-        throw new ForbiddenException(ErrorMessages.USER_INACTIVE);
+        throw new ForbiddenException(
+          "Votre adresse email n'a pas encore été vérifiée",
+        );
 
       // On compare le mot de passe fourni avec celui enregistré en base de données
       const match = await bcrypt.compare(utilisateur_mdp, user.utilisateur_mdp);
-      if (!match) throw new BadRequestException(ErrorMessages.INVALID_LOGIN);
+      if (!match)
+        throw new BadRequestException(
+          'Mot de passe ou adresse mail ne corresponde pas',
+        );
 
       // On incrémente la version du token pour invalider les anciens tokens
       await this.prismaService.utilisateurs.update({
@@ -176,7 +182,7 @@ export class UsersService {
 
       // Retour de la réponse avec les tokens et les informations de l'utilisateur
       return {
-        result: true, // Indique que l'opération de connexion a réussi.
+
         data: {
           token: {
             accessToken, // Le token JWT utilisé pour accéder aux ressources sécurisées.
@@ -185,6 +191,7 @@ export class UsersService {
             expireTime, // Temps d'expiration du token
           },
           user: {
+            utilisateur_id: user.utilisateur_id, // Le nom d'utilisateur
             utilisateur_nom: user.utilisateur_nom, // Le nom d'utilisateur
             utilisateur_prenom: user.utilisateur_prenom, // Le prenom d'utilisateur
             utilisateur_email: user.utilisateur_email, // L'email de l'utilisateur
@@ -339,7 +346,6 @@ export class UsersService {
     }
   }
 
-  
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   READ  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -391,7 +397,7 @@ export class UsersService {
   }
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ User Profil Details @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  async getUserProfile(utilisateur_id: number) {
+  /* async getUserProfile(utilisateur_id: number) {
     try {
       // On vérifie si l'utilisateur existe
       await this.verifyUsersExistence(utilisateur_id);
@@ -400,14 +406,26 @@ export class UsersService {
       const user = await this.prismaService.utilisateurs.findUnique({
         where: { utilisateur_id: utilisateur_id },
       });
-      return {
-        result: true,
-        data: user,
-        error_code: null,
-        error: null,
-      };
+      return user;
     } catch (error) {
       // Relance l'erreur pour qu'elle soit gérée ailleurs
+      throw error;
+    }
+  } */
+
+  async getUserProfile(utilisateur_id: number) {
+    try {
+      const user = await this.prismaService.utilisateurs.findUnique({
+        where: { utilisateur_id },
+      });
+
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+
+      const { utilisateur_mdp, refreshToken, tokenVersion, ...safeUser } = user;
+      return safeUser;
+    } catch (error) {
       throw error;
     }
   }
@@ -426,7 +444,7 @@ export class UsersService {
       },
     });
 
-    if (!user) throw new NotFoundException(ErrorMessages.NO_USER_FOUND);
+    if (!user) throw new NotFoundException(`Aucun utilisateur trouvé`);
     return user;
   }
 
@@ -456,7 +474,7 @@ export class UsersService {
       where: { utilisateur_email: utilisateur_email },
     });
     if (existingUser) {
-      throw new ConflictException(ErrorMessages.ALREADY_EXIST);
+      throw new ConflictException(`Cet utilisateur existe déjà`);
     }
   }
 
@@ -468,7 +486,8 @@ export class UsersService {
         roles: true, // Inclure les informations du rôle
       },
     });
-    if (!user) throw new NotFoundException(ErrorMessages.EMAIL_NOT_FOUND);
+    if (!user)
+      throw new NotFoundException(`Utilisateur avec cet email introuvable`);
 
     return user;
   }
@@ -483,7 +502,7 @@ export class UsersService {
     if (!phoneNumberRegex.test(phoneNumber)) {
       // Si le numero ne correspond pas, on lance une exception pour indiquer que le numero n'est pas valide.
 
-      throw new BadRequestException(ErrorMessages.INVALID_PHONE_NUMBER);
+      throw new BadRequestException(`Format valide : +41 123456789`);
     }
   }
 
@@ -495,12 +514,14 @@ export class UsersService {
     // On teste si l'email correspond au format défini par l'expression régulière.
     if (!emailRegex.test(email)) {
       // Si l'email ne correspond pas, on lance une exception pour indiquer que l'email n'est pas valide.
-      throw new BadRequestException(ErrorMessages.EMAIL_INVALID);
+      throw new BadRequestException(`Votre email n'est pas valide`);
     }
     // On vérifie également si la longueur de l'email dépasse 100 caractères.
     if (email.length > 100) {
       // Si oui, on lance une autre exception pour indiquer que l'email est trop long.
-      throw new BadRequestException(ErrorMessages.EMAIL_TOO_LONG);
+      throw new BadRequestException(
+        `Votre email est excessivement long, pas plus de 100 caractères`,
+      );
     }
   }
 
@@ -516,12 +537,16 @@ export class UsersService {
       // Si le mot de passe ne correspond pas, on lance une exception pour indiquer que le mot de passe n'est pas valide.
       // Il doit contenir au moins une lettre majuscule, un caractère spécial, et un chiffre.
 
-      throw new NotFoundException(ErrorMessages.INVALID_PASSWORD);
+      throw new NotFoundException(
+        `Doit contenir au moins : 1 lettre majuscule, 1 caractère spécial, 1 chiffre`,
+      );
     }
     // On vérifie également si la longueur du mot de passe dépasse 100 caractères.
     if (password.length > 100) {
       // Si oui, on lance une autre exception pour indiquer que le mot de passe est trop long.
-      throw new BadRequestException(ErrorMessages.EMAIL_TOO_LONG);
+      throw new BadRequestException(
+        `Votre email est excessivement long, pas plus de 100 caractères`,
+      );
     }
   }
 }

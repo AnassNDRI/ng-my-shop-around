@@ -1,24 +1,24 @@
-import {Component, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import {AuthenticationService} from "./services/authentication.service";
-import {Router} from "@angular/router";
-import {Subscription} from "rxjs";
-import {LayoutService} from "./services/layout.service";
-import {PanierService} from "./services/panier.service";
-import {LignePanier} from "./models/ligne-panier";
-
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LignePanier } from 'src/app/models/ligne-panier';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LayoutService } from 'src/app/services/layout.service';
+import { PanierService } from 'src/app/services/panier.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-
-export class AppComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit, OnDestroy {
   isAuth: null | boolean = false;
   title = 'shopAround';
   myToken: any;
-  headerVisible = true;
+  validate = false;
   nbArticlesPanier = 0;
+
+  
   panierSubscription!: Subscription;
   isAdmin = false;
   isEmploye = false;
@@ -54,10 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
       this.isEmploye = this.authService.isEmploye;
     });
 
-    this.layoutService.isHeaderVisible$.subscribe(headerVisible => {
-      this.headerVisible = headerVisible;
-      this.cdr.detectChanges();
+
+    this.panierService.validate$.subscribe(validate => {
+      this.validate = validate;
     });
+
+ 
   }
 
   ngOnDestroy() {
