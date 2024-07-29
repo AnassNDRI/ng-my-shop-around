@@ -6,10 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNoteFoundComponent } from "./components/page-note-found/page-note-found.component";
 import { AuthGuard } from './helpers/auth.guard';
 
-
 const routes: Routes = [
-
-
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent }, 
   { path: 'panier', loadChildren: () => import('./components/panier/panier.module').then(m => m.PanierModule) },
@@ -18,9 +15,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'adresses', loadChildren: () => import('./components/adresse/adresse.module').then(m => m.AdresseModule), canActivate: [AuthGuard]},
   { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.profileModule), canActivate: [AuthGuard]},
-  { path: 'home', component: HomeComponent },
-  { path: 'pargenotfound', component: PageNoteFoundComponent},
-  ];
+  { path: 'pagenotfound', component: PageNoteFoundComponent},
+  { path: '**', redirectTo: 'pagenotfound' } // Redirection vers la page non trouvée pour les routes inconnues
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

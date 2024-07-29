@@ -8,12 +8,12 @@
     <form (ngSubmit)="login()" [formGroup]="credentials">
       <h2>CONNEXION</h2>
       <div class="mb-3">
-        <label  class="form-label">Email</label>
+        <label  class="form-label">Email : <strong>(test&#64;mail.shop)</strong></label>
         <input type="email" class="form-control" id="utilisateur_email" formControlName="utilisateur_email">
         <span class="error" *ngIf="credentials.controls['utilisateur_email'].touched && credentials.controls['utilisateur_email'].invalid">L'adresse email est obligatoire</span>
       </div>
       <div class="mb-3">
-        <label  class="form-label">Password</label>
+        <label  class="form-label">Password : <strong>(Secret112&#64;)</strong></label>
         <input type="password" class="form-control" id="utilisateur_mdp" formControlName="utilisateur_mdp">
         <span class="error" *ngIf="credentials.controls['utilisateur_mdp'].touched && credentials.controls['utilisateur_mdp'].invalid">Le mot de passe doit contenir au moins 6 caractères</span>
       </div>

@@ -1,11 +1,16 @@
 <nav class="navbar">
   <div class="navbar-container container">
-    <input type="checkbox" id="menu-checkbox" #menuToggle  />
+    <input type="checkbox" id="menu-checkbox" #menuToggle />
     <div class="hamburger-lines">
       <span class="line line1"></span>
       <span class="line line2"></span>
       <span class="line line3"></span>
     </div>
+    <h5 class="navbar-logo">
+      <a class="active" href="#home">
+        <i class="fas fa-crow" style="color: #396a5b"> My Shop</i>
+      </a>
+    </h5>
     <ul class="menu-items">
       <li>
         <a (click)="closeMenu()" style="position: relative" [routerLink]="['/panier']">
@@ -26,7 +31,7 @@
       <li class="nav">
         <a (click)="closeMenu()" [routerLink]="['/login']" *ngIf="!isAuth">Connexion</a>
       </li>
-      <li  class="nav">
+      <li class="nav">
         <a (click)="closeMenu()" [routerLink]="['/register']" *ngIf="!isAuth">S'inscrire</a>
       </li>
 
@@ -51,10 +56,5 @@
         >
       </li>
     </ul>
-    <h1 >
-      <a class="active" href="#home"
-        ><i class="fas fa-crow" style="color: #396a5b"> My Shop</i></a
-      >
-    </h1>
   </div>
 </nav>

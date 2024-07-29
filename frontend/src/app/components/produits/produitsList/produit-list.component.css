@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
@@ -9,8 +9,10 @@ body {
 
 .card {
   background: #fff;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
   border: 0;
   border-radius: 1rem;
 }
@@ -37,7 +39,7 @@ body {
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
 .btn-warning {
@@ -82,7 +84,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 
@@ -106,18 +108,18 @@ body {
 }
 
 #menu-accordeon li {
-  background-color: #729EBF;
-  background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+  background-color: #729ebf;
+  background-image: linear-gradient(to bottom, #729ebf 0%, #333a40 100%);
   border-radius: 6px;
   margin-bottom: 2px;
   box-shadow: 3px 3px 3px #999;
-  border: solid 1px #333A40;
+  border: solid 1px #333a40;
 }
 
 #menu-accordeon li li {
   max-height: 0;
   overflow: hidden;
-  transition: all .5s;
+  transition: all 0.5s;
   border-radius: 0;
   background: #444;
   box-shadow: none;
@@ -140,7 +142,7 @@ body {
 }
 
 #menu-accordeon li:hover {
-  background: #729EBF;
+  background: #729ebf;
 }
 
 #menu-accordeon li li:hover {
@@ -154,6 +156,18 @@ body {
 
 #menu-accordeon li:hover li {
   max-height: 15em;
+}
+
+.loading-container {
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
 }
 
 /* Responsive Styles */

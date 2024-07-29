@@ -1,34 +1,40 @@
-
 <main>
   <div class="container">
-    <h3 class="text-center">Bienvenu sur notre Boutique en ligne !</h3>
+    <h3 class="text-center">Bienvenu sur My Shop !</h3>
   </div>
-  <thead>
-    <ul id="menu-accordeon">
-      <li>
-        <a>Rechercher</a>
-        <ul>
-          <li>
-            <select [(ngModel)]="categoryIdSelected" class="form-select">
-              <option [ngValue]="null">TOUTES LES CATEGORIES</option>
-              <option [ngValue]="category.categorie_id" *ngFor="let category of categoryList">
-                {{ category.categorie_libelle }}
-              </option>
-            </select>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </thead>
+
+  <div *ngIf="isLoading" class="loading-container d-flex justify-content-center align-items-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <thead>
+      <ul id="menu-accordeon">
+        <li>
+          <a>Rechercher</a>
+          <ul>
+            <li>
+              <select [(ngModel)]="categoryIdSelected" class="form-select">
+                <option [ngValue]="null">TOUTES LES CATEGORIES</option>
+                <option [ngValue]="category.categorie_id" *ngFor="let category of categoryList">
+                  {{ category.categorie_libelle }}
+                </option>
+              </select>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </thead>
   
-  <table class="table table-striped table-borderless">
-    <main>
+    <table class="table table-striped table-borderless">
       <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
         <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
           <div *ngFor="let prod of filtrerArticles(articles)" (click)="askDetail(prod.article_id)">
             <div class="col">
               <div class="card h-100 shadow-sm">
-                <img [src]=prod.article_url class="card-img-top" alt="...">
+                <img [src]="prod.article_url" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="clearfix mb-3">
                     <span class="float-end price-hp">{{prod.article_intitule}} </span>
@@ -46,8 +52,6 @@
           </div>
         </div>
       </div>
-    </main>
-  </table>
-  
-  
+    </table>
+  </div>
 </main>
