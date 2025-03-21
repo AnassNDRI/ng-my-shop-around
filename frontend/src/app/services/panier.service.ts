@@ -1,31 +1,28 @@
-
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from 'rxjs';
-import {LignePanier} from "../models/ligne-panier";
-import {Article} from "../models/article";
-import {Produit} from "../models/produit";
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LignePanier } from '../models/ligne-panier';
+import { Article } from '../models/article';
+import { Produit } from '../models/produit';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class PanierService {
+  private panierSubject$: BehaviorSubject<LignePanier[]> = new BehaviorSubject<
+    LignePanier[]
+  >([]);
+  public panier$: Observable<LignePanier[]> =
+    this.panierSubject$.asObservable();
 
-  private panierSubject$: BehaviorSubject<LignePanier[]> = new BehaviorSubject<LignePanier[]>([]);
-  public panier$: Observable<LignePanier[]> = this.panierSubject$.asObservable();
-
-
-  private validateSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private validateSubject$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   public validate$: Observable<boolean> = this.validateSubject$.asObservable();
 
+  items: Produit[] = [];
 
-
-  items:  Produit[] = [];
-
-  constructor(private route: Router) {
-  }
+  constructor(private route: Router) {}
 
   get panier(): LignePanier[] {
     return this.panierSubject$.getValue();
@@ -34,26 +31,23 @@ export class PanierService {
   add(article: Article) {
     let panier = this.panier;
 
-    // Vérifier si l'article n'existe pas déjà dans le panier :
-    // - s'il existe : on augmente simplement sa quantité
+    // Logique d'ajout...
+    console.log('Avant ajout :', panier);
+
     let dejaDansPanier = false;
     for (let ligne of panier) {
       if (ligne.article.article_id === article.article_id) {
-          ligne.quantite++;
-          dejaDansPanier = true;
+        ligne.quantite++;
+        dejaDansPanier = true;
       }
     }
 
-    // - s'il n'existe pas : on crée une nouvelle ligne dans le panier
     if (!dejaDansPanier) {
-      const ligne = {
-        article: article,
-        quantite: 1
-      }
-      panier.push(ligne);
+      panier.push({ article, quantite: 1 });
     }
 
-    this.panierSubject$.next( panier );
+    console.log('Après ajout :', panier);
+    this.panierSubject$.next(panier); // Émettre la nouvelle valeur
     this.savePanier();
   }
 
@@ -63,17 +57,17 @@ export class PanierService {
 
     for (let ligne of panier) {
       if (ligne.article.article_id === articleId) {
-        const confirmation = confirm('Souhaitez-vous supprimer cet article de votre panier ?');
-        if (confirmation == true)
-        panier.splice(i, 1);
+        const confirmation = confirm(
+          'Souhaitez-vous supprimer cet article de votre panier ?'
+        );
+        if (confirmation == true) panier.splice(i, 1);
         break;
       }
       i++;
     }
 
-    this.panierSubject$.next( panier );
+    this.panierSubject$.next(panier);
     this.savePanier();
-
   }
 
   remove(articleId: number) {
@@ -81,23 +75,21 @@ export class PanierService {
     let i = 0;
 
     for (let ligne of panier) {
-
       if (ligne.article.article_id === articleId) {
         if (ligne.quantite > 1) {
           ligne.quantite--;
-        }
-        else {
-        const confirmation = confirm('Souhaitez-vous supprimer cet article de votre panier?');
-          if (confirmation == true)
-          panier.splice(i, 1);
-          else
-            ;
+        } else {
+          const confirmation = confirm(
+            'Souhaitez-vous supprimer cet article de votre panier?'
+          );
+          if (confirmation == true) panier.splice(i, 1);
+          else;
         }
         break;
       }
       i++;
     }
-    this.panierSubject$.next( panier );
+    this.panierSubject$.next(panier);
     this.savePanier();
   }
 
@@ -133,6 +125,4 @@ export class PanierService {
   setValidate(validate: boolean) {
     this.validateSubject$.next(validate);
   }
-
-  
 }

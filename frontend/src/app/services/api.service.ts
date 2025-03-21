@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = 'http://localhost:3000';
+  baseUrl = environment.apiUrl;
 
-  constructor() {
-  }
-
+  constructor() {}
 }
-
-
