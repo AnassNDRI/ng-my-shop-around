@@ -15,8 +15,11 @@
       <li>
         <a (click)="closeMenu()" style="position: relative" [routerLink]="['/panier']">
           <i class="fa-solid fa-cart-shopping"></i>
-          <div class="panier-count" *ngIf="nbArticlesPanier > 0 && !validate">
-            {{ nbArticlesPanier }}
+          <div
+            class="panier-count"
+            *ngIf="totalArticlesPanier() > 0 && !validate"
+          >
+            {{ totalArticlesPanier() }}
           </div>
         </a>
       </li>
@@ -56,5 +59,12 @@
         >
       </li>
     </ul>
+
+    <h1>
+      <a class="active" href="#home"
+        ><i class="fas fa-crow" style="color: #396a5b"> My Shop</i></a
+      >
+    </h1>
+
   </div>
 </nav>
