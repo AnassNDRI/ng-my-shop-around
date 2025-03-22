@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Base_url } from '../utils/baseUrl';
 import { Observable } from 'rxjs';
 import { Tva } from '../models/tva';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TvaService {
-  url = Base_url.Url_ServBack + '/products';
+  constructor(private http: HttpClient, private apiService: ApiService) {}
 
-  constructor(private http: HttpClient) {}
+  url = this.apiService.baseUrl + '/products';
 
   list(): Observable<Tva[]> {
     return this.http.get<Tva[]>(this.url + '/tva');

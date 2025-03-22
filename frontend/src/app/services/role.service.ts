@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from 'rxjs';
 import {Role} from '../models/role';
-import {Base_url} from "../utils/baseUrl";
+import { ApiService } from "./api.service";
 
 
 @Injectable({
@@ -11,11 +11,10 @@ import {Base_url} from "../utils/baseUrl";
 })
 export class RoleService {
 
-  url = Base_url.Url_ServBack + '/roles';
-
-
-  constructor(private http: HttpClient) {
-  }
+ 
+  constructor(private http: HttpClient, private apiService: ApiService) {}
+ 
+   url = this.apiService.baseUrl + '/roles';
 
   list(): Observable<Role[]> {
     return this.http.get<Role[]>(this.url + '/list');

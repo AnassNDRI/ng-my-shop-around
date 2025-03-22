@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { LignePanier } from '../models/ligne-panier';
 import { Article } from '../models/article';
 import { Produit } from '../models/produit';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
