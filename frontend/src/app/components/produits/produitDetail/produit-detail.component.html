@@ -12,7 +12,7 @@
       <div
         class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 justify-content-center"
       >
-        <div class="col">
+        <div class="col" *ngIf="prod">
           <div class="card h-100 shadow-sm">
             <img [src]="prod.article_url" class="card-img-top" alt="..." />
             <div class="card-body">

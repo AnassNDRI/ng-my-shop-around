@@ -44,6 +44,8 @@ export class ProduitDetailComponent implements OnInit {
       this.articleService.findById(this.prodId).subscribe((prod) => {
         this.prod = prod;
 
+        console.log('Article fetché est: ', prod);
+
         const tva = this.tvaList.find(
           (tva) => tva.tva_id === this.prod.tva?.tva_id
         );
