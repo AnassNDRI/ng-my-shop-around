@@ -1,25 +1,19 @@
 import { Injectable } from '@angular/core';
-import {Base_url} from '../utils/baseUrl';
-import {HttpClient} from '@angular/common/http';
-import {AuthenticationService} from './authentication.service';
-import {Observable} from 'rxjs';
-import {Utilisateur} from '../models/utilisateur';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Utilisateur } from '../models/utilisateur';
+import { ApiService } from './api.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileService {
+  constructor(private http: HttpClient, private apiService: ApiService) {}
 
-  url = Base_url.Url_ServBack + '/users';
-
-
-  constructor(private http: HttpClient,
-              private authService : AuthenticationService) {
-  }
-
+  url = this.apiService.baseUrl + '/users';
 
   save(utilisateur: Utilisateur): Observable<Utilisateur> {
-    if( utilisateur.id ) {
+    if (utilisateur.id) {
       return this.http.put<Utilisateur>(this.url, utilisateur);
     } else {
       return this.http.post<Utilisateur>(this.url, utilisateur);
@@ -31,8 +25,6 @@ export class ProfileService {
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>( this.url + '/' + id );
+    return this.http.delete<void>(this.url + '/' + id);
   }
-
 }
-

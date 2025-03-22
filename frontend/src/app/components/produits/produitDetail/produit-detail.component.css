@@ -31,7 +31,7 @@ button span:after {
   transition: 0.5s;
 }
 button:hover {
-  background-color: #c9c4c9;
+  background-color: #c6bfc6;
 }
 
 .save-barre {
@@ -46,6 +46,11 @@ button:hover span {
 button:hover span:after {
   opacity: 1;
   right: 0;
+}
+.save-barre {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */ /* Prend toute la hauteur de la vue */
 }
 
 .styled {
